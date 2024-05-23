@@ -13,6 +13,8 @@ import RedisClient from "../config/redis";
  */
 
 const addToMyList = async (req: Request, res: Response) => {
+  //#swagger.tags = ['MyList']
+
   const { userId, contentId, contentType } = req.body;
   if (!userId || !contentId || !contentType) {
     return res.status(400).json({
@@ -59,6 +61,8 @@ const addToMyList = async (req: Request, res: Response) => {
  * @return {Promise<void>} A promise that resolves when the item is removed successfully or rejects with an error.
  */
 const removeFromMyList = async (req: Request, res: Response) => {
+  //#swagger.tags = ['MyList']
+
   const { userId, contentId } = req.params;
 
   try {
@@ -93,6 +97,8 @@ const removeFromMyList = async (req: Request, res: Response) => {
  * @return {Promise<void>} - A promise that resolves when the list is retrieved and sent successfully, or rejects with an error.
  */
 const getMyList = async (req: Request, res: Response) => {
+  //#swagger.tags = ['MyList']
+
   const { userId } = req.params;
   const { page = 1, limit = 10 } = req.query;
   const cacheKey = `mylist:${userId}:${page}:${limit}`;

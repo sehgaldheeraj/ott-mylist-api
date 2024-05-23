@@ -2,6 +2,8 @@ import bodyParser from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express";
+import swaggerOutput from "./json/swagger_output.json";
 
 dotenv.config();
 
@@ -12,6 +14,9 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/api", router);
+
+const options = { explorer: true };
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerOutput, options));
 
 const PORT = process.env.PORT || 3000;
 
