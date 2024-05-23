@@ -1,10 +1,10 @@
 import { createClient } from "redis";
-
+import { getEnvVariable } from "../utils/env";
 const RedisClient = createClient({
-  password: process.env.REDIS_PASSWORD,
+  password: getEnvVariable("REDIS_PASSWORD"),
   socket: {
-    host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT || "6379"),
+    host: getEnvVariable("REDIS_HOST"),
+    port: parseInt(getEnvVariable("REDIS_PORT"), 10),
   },
 });
 
